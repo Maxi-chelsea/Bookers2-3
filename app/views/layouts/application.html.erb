@@ -4,12 +4,62 @@
     <title>Bookers23</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+    <meta name='viewport' content="width=devise-width, inital-scale=1, maximum-scale=1">
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
+  <body class="d-flex flex-column vh-100">
+    <header>
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+          <a class="navbar-brand" href="/">Bookers</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav ml-auto ">
+            <% if user_signed_in? %>
+              <li class="nav-item">
+                <%#= link_to "Home", destroy_user_session_path, method: :delete, class: 'nav-link text-dark' %>
+              </li>
+              <li class="nav-item">
+                <%#= link_to '投稿フォーム', new_post_image_path, class: 'nav-link text-dark' %>
+              </li>
+              <li class="nav-item">
+                <%#= link_to 'マイページ', user_path(current_user.id), class: 'nav-link text-dark' %>
+              </li>
+            <% else %>
+              <li class="nav-item ">
+                <a class="fas fa-home nav-link text-light" href="/"> Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="fas fa-link  nav-link text-light" href="/homes/about"> About</a>
+              </li>
+              <li class="nav-item">
+                <a class="fas fa-user-plus nav-link text-light" href="/users/sign_up"> sign up</a>
+              </li>
+              <li class="nav-item">
+                <a class="fas fa-sign-in-alt nav-link text-light" href="/users/sign_in"> login</a>
+              </li>
+            <% end %>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <main class="mb-auto">
     <%= yield %>
+    </main>
+    <footer class="bg-dark text-white pt-5 pb-4">
+      <div class="container">
+        <div class="row">
+          <div class="col text-center">
+            <p>CopyRight Infratop.inc</p>
+          </div>
+        </div>
+      </div>
+    </footer>
   </body>
 </html>
